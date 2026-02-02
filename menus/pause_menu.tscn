@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c4p11eby4nk8u"]
+
+[ext_resource type="Script" uid="uid://4wwm7fvr2xd2" path="res://menus/pause_menu.gd" id="1_0ps6k9"]
+
+[node name="PauseMenu" type="Control" unique_id=1906224346]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0ps6k9")
+
+[node name="Panel" type="Panel" parent="." unique_id=1248468856]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=33005979]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=1268847370]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Margin/VBox" unique_id=625187134]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Panel/Margin/VBox" unique_id=1585085846]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="Panel/Margin/VBox" unique_id=1682571494]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="Panel/Margin/VBox" unique_id=1926665689]
+layout_mode = 2
+text = "Settings (stub)"
+
+[node name="SaveQuitButton" type="Button" parent="Panel/Margin/VBox" unique_id=238681983]
+layout_mode = 2
+text = "Save & Quit"
