@@ -1,0 +1,157 @@
+[gd_scene load_steps=15 format=3 uid="uid://co8ohc4s3w5xq"]
+
+[ext_resource type="Script" uid="uid://de2w433kxio3q" path="res://game/level/run_scene.gd" id="1_gxayg"]
+[ext_resource type="Texture2D" uid="uid://dwemyvh4qup3x" path="res://assets/textures/space_backgroundjpg.jpg" id="2_3f7j0"]
+[ext_resource type="PackedScene" uid="uid://dfako2x15xtj1" path="res://game/player/player.tscn" id="3_y1cp5"]
+[ext_resource type="PackedScene" uid="uid://c4p11eby4nk8u" path="res://menus/pause_menu.tscn" id="4_qcce0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ywh"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_ce5qc"]
+sky_material = SubResource("ProceduralSkyMaterial_y7ywh")
+
+[sub_resource type="Environment" id="Environment_ys12y"]
+background_mode = 2
+sky = SubResource("Sky_ce5qc")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f87av"]
+shading_mode = 0
+albedo_texture = ExtResource("2_3f7j0")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p203r"]
+material = SubResource("StandardMaterial3D_f87av")
+size = Vector2(178, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p58wn"]
+size = Vector3(1, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2u0k"]
+size = Vector3(1, 1, 178)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qy3kc"]
+size = Vector3(1, 1, 179)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aojsi"]
+size = Vector3(178, 1, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcx0j"]
+size = Vector3(178, 1, 25)
+
+[node name="RunRoot" type="Node3D"]
+script = ExtResource("1_gxayg")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_ys12y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraRig" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Environment/CameraRig"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+projection = 1
+size = 100.0
+
+[node name="Background" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Background"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_p203r")
+
+[node name="SolarWind" type="GPUParticles3D" parent="Environment/Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.0051)
+
+[node name="Controllers" type="Node3D" parent="."]
+
+[node name="RunState" type="Node3D" parent="Controllers"]
+
+[node name="SpawnController" type="Node3D" parent="Controllers"]
+
+[node name="DescentController" type="Node3D" parent="Controllers"]
+
+[node name="ScoringController" type="Node3D" parent="Controllers"]
+
+[node name="HealthController" type="Node3D" parent="Controllers"]
+
+[node name="GamePlayArea" type="Node3D" parent="."]
+
+[node name="Walls" type="Node3D" parent="GamePlayArea"]
+
+[node name="LeftWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/LeftWall"]
+shape = SubResource("BoxShape3D_p58wn")
+
+[node name="RightWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/RightWall"]
+shape = SubResource("BoxShape3D_p58wn")
+
+[node name="TopWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/TopWall"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_s2u0k")
+
+[node name="BottomWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/BottomWall"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_qy3kc")
+
+[node name="Areas" type="Node3D" parent="GamePlayArea"]
+
+[node name="DangerZone" type="Area3D" parent="GamePlayArea/Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/DangerZone"]
+shape = SubResource("BoxShape3D_aojsi")
+debug_color = Color(1, 1, 0, 0.41960785)
+
+[node name="KillZone" type="Area3D" parent="GamePlayArea/Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 58)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/KillZone"]
+shape = SubResource("BoxShape3D_hcx0j")
+debug_color = Color(0.80719346, 0.41510022, 0, 0.41960785)
+
+[node name="Player" parent="GamePlayArea" node_paths=PackedStringArray("bullet_root") instance=ExtResource("3_y1cp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+bullet_root = NodePath("../BallRoot")
+
+[node name="BallRoot" type="Node3D" parent="GamePlayArea" groups=["ball_root"]]
+
+[node name="BlockRoot" type="Node3D" parent="GamePlayArea"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TopLeftDock" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HudLabel" type="Label" parent="HUD/TopLeftDock"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("4_qcce0")]

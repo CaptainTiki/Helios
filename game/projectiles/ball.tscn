@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvhmjswxrcomw"]
+
+[ext_resource type="Script" uid="uid://cco28346wi3pq" path="res://game/projectiles/ball_base.gd" id="1_oainv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qpwwd"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qpwwd"]
+radius = 1.0
+height = 2.0
+
+[node name="Ball" type="CharacterBody3D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 23
+axis_lock_linear_y = true
+script = ExtResource("1_oainv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qpwwd")
+
+[node name="Rig" type="Node3D" parent="."]
+
+[node name="Mesh" type="Node3D" parent="Rig"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_qpwwd")
+skeleton = NodePath("../../..")
+
+[node name="VFX" type="Node3D" parent="Rig"]

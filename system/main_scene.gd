@@ -71,7 +71,7 @@ func start_run() -> void:
 
 	GameSession.reset_for_new_run()
 	SaveManager.autosave_on_run_start()
-	_set_game(preload("res://game/run_root.tscn"))
+	_set_game(preload("res://game/level/run_root.tscn"))
 
 
 func show_run_summary(joules_earned: int) -> void:
@@ -150,7 +150,7 @@ func _on_continue() -> void:
 		show_upgrade_bay()
 
 
-func _on_load_slot(slot_id: String) -> void:
+func _on_load_slot(_slot_id: String) -> void:
 	# Jam scope: only slot_1 exists, so we just load_latest.
 	if SaveManager.load_latest():
 		show_upgrade_bay()
