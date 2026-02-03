@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dxp4d586p5frc"]
 
-[ext_resource type="Script" uid="uid://bybjwqpx8qi86" path="res://menus/save_and_quit_modal.gd" id="1_caxrul"]
+[ext_resource type="Script" uid="uid://c5y3n6gggavcc" path="res://menus/save_and_quit_modal.gd" id="1_caxrul"]
 
-[node name="SaveAndQuitModal" type="Control"]
+[node name="SaveAndQuitModal" type="Control" unique_id=1956253597]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,20 +12,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_caxrul")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1780543199]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -220
-offset_top = -140
-offset_right = 220
-offset_bottom = 140
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Margin" type="MarginContainer" parent="Panel"]
-layout_mode = 3
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=113650185]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,23 +38,29 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=911386812]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/Margin/VBox"]
+[node name="Label" type="Label" parent="Panel/Margin/VBox" unique_id=1468095299]
+layout_mode = 2
 text = "Save & Quit?"
 horizontal_alignment = 1
 
-[node name="Info" type="Label" parent="Panel/Margin/VBox"]
-text = "Rule: you can't quit without saving.\n(We'll make this prettier later.)"
+[node name="Info" type="Label" parent="Panel/Margin/VBox" unique_id=685515645]
+layout_mode = 2
+text = "Rule: you can't quit without saving.
+(We'll make this prettier later.)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/Margin/VBox"]
+[node name="Spacer" type="Control" parent="Panel/Margin/VBox" unique_id=1517749297]
 custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
 
-[node name="ConfirmButton" type="Button" parent="Panel/Margin/VBox"]
+[node name="ConfirmButton" type="Button" parent="Panel/Margin/VBox" unique_id=2046460205]
+layout_mode = 2
 text = "Save & Confirm"
 
-[node name="CancelButton" type="Button" parent="Panel/Margin/VBox"]
+[node name="CancelButton" type="Button" parent="Panel/Margin/VBox" unique_id=868137465]
+layout_mode = 2
 text = "Cancel"

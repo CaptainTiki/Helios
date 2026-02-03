@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ceiiwrjj4pjxu"]
+
+[ext_resource type="Script" uid="uid://cedqwen65u1bx" path="res://game/blocks/block_base.gd" id="1_bces4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bces4"]
+size = Vector3(10, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bces4"]
+albedo_color = Color(0.10043866, 0.3377082, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bces4"]
+material = SubResource("StandardMaterial3D_bces4")
+size = Vector3(10, 4, 4)
+
+[node name="Block" type="RigidBody3D" unique_id=1216506803 groups=["block", "collidable"]]
+gravity_scale = 0.0
+script = ExtResource("1_bces4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1159099769]
+shape = SubResource("BoxShape3D_bces4")
+
+[node name="Rig" type="Node3D" parent="." unique_id=2087211699]
+
+[node name="Mesh" type="Node3D" parent="Rig" unique_id=1536315145]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh" unique_id=1950715546]
+mesh = SubResource("BoxMesh_bces4")
+skeleton = NodePath("../../..")
+
+[node name="VFX" type="Node3D" parent="Rig" unique_id=312647135]

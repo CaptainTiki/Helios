@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvhmjswxrcomw"]
+[gd_scene format=3 uid="uid://cvhmjswxrcomw"]
 
 [ext_resource type="Script" uid="uid://cco28346wi3pq" path="res://game/projectiles/ball_base.gd" id="1_oainv"]
 
@@ -9,22 +9,22 @@ radius = 1.0
 radius = 1.0
 height = 2.0
 
-[node name="Ball" type="CharacterBody3D" groups=["ball"]]
+[node name="Ball" type="CharacterBody3D" unique_id=338672535 groups=["ball"]]
 collision_layer = 4
 collision_mask = 23
 axis_lock_linear_y = true
 script = ExtResource("1_oainv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=490931458]
 shape = SubResource("SphereShape3D_qpwwd")
 
-[node name="Rig" type="Node3D" parent="."]
+[node name="Rig" type="Node3D" parent="." unique_id=1294095387]
 
-[node name="Mesh" type="Node3D" parent="Rig"]
+[node name="Mesh" type="Node3D" parent="Rig" unique_id=1966877457]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh" unique_id=1469958340]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("SphereMesh_qpwwd")
 skeleton = NodePath("../../..")
 
-[node name="VFX" type="Node3D" parent="Rig"]
+[node name="VFX" type="Node3D" parent="Rig" unique_id=121064052]

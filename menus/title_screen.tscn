@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cwu1j8gu0htir"]
 
-[ext_resource type="Script" uid="uid://d3djh3ug5dtsc" path="res://menus/title_screen.gd" id="1_zps7ac"]
+[ext_resource type="Script" uid="uid://qs5ibxracbu6" path="res://menus/title_screen.gd" id="1_zps7ac"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=1127104910]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_zps7ac")
 
-[node name="Margin" type="MarginContainer" parent="."]
-layout_mode = 3
+[node name="Margin" type="MarginContainer" parent="." unique_id=757763550]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,19 +23,23 @@ theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 48
 theme_override_constants/margin_bottom = 48
 
-[node name="VBox" type="VBoxContainer" parent="Margin"]
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=504618948]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Margin/VBox"]
+[node name="TitleLabel" type="Label" parent="Margin/VBox" unique_id=9671613]
+layout_mode = 2
 text = "HELIOS SHELL"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="Margin/VBox"]
+[node name="SubtitleLabel" type="Label" parent="Margin/VBox" unique_id=708172239]
+layout_mode = 2
 text = "Block Breaker • Run • Upgrade • Redeploy"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="Margin/VBox"]
+[node name="Spacer" type="Control" parent="Margin/VBox" unique_id=1898870755]
 custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 
-[node name="StartButton" type="Button" parent="Margin/VBox"]
+[node name="StartButton" type="Button" parent="Margin/VBox" unique_id=817990924]
+layout_mode = 2
 text = "Start"

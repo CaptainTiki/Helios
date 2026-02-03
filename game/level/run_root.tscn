@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://co8ohc4s3w5xq"]
+[gd_scene format=3 uid="uid://co8ohc4s3w5xq"]
 
 [ext_resource type="Script" uid="uid://de2w433kxio3q" path="res://game/level/run_scene.gd" id="1_gxayg"]
 [ext_resource type="Texture2D" uid="uid://dwemyvh4qup3x" path="res://assets/textures/space_backgroundjpg.jpg" id="2_3f7j0"]
 [ext_resource type="PackedScene" uid="uid://dfako2x15xtj1" path="res://game/player/player.tscn" id="3_y1cp5"]
+[ext_resource type="PackedScene" uid="uid://ceiiwrjj4pjxu" path="res://game/blocks/block.tscn" id="4_3f7j0"]
 [ext_resource type="PackedScene" uid="uid://c4p11eby4nk8u" path="res://menus/pause_menu.tscn" id="4_qcce0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ywh"]
@@ -45,113 +46,191 @@ size = Vector3(178, 1, 25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hcx0j"]
 size = Vector3(178, 1, 25)
 
-[node name="RunRoot" type="Node3D"]
+[node name="RunRoot" type="Node3D" unique_id=1082429640]
 script = ExtResource("1_gxayg")
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="." unique_id=1679652228]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1453888603]
 environment = SubResource("Environment_ys12y")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1117978318]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CameraRig" type="Node3D" parent="Environment"]
+[node name="CameraRig" type="Node3D" parent="Environment" unique_id=112242834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Environment/CameraRig"]
+[node name="Camera3D" type="Camera3D" parent="Environment/CameraRig" unique_id=2063733282]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 projection = 1
 size = 100.0
 
-[node name="Background" type="Node3D" parent="Environment"]
+[node name="Background" type="Node3D" parent="Environment" unique_id=945759169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Background"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Background" unique_id=1506784304]
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_p203r")
 
-[node name="SolarWind" type="GPUParticles3D" parent="Environment/Background"]
+[node name="SolarWind" type="GPUParticles3D" parent="Environment/Background" unique_id=1138030650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.0051)
 
-[node name="Controllers" type="Node3D" parent="."]
+[node name="Controllers" type="Node3D" parent="." unique_id=912035020]
 
-[node name="RunState" type="Node3D" parent="Controllers"]
+[node name="RunState" type="Node3D" parent="Controllers" unique_id=1969283933]
 
-[node name="SpawnController" type="Node3D" parent="Controllers"]
+[node name="SpawnController" type="Node3D" parent="Controllers" unique_id=33041945]
 
-[node name="DescentController" type="Node3D" parent="Controllers"]
+[node name="DescentController" type="Node3D" parent="Controllers" unique_id=1129300476]
 
-[node name="ScoringController" type="Node3D" parent="Controllers"]
+[node name="ScoringController" type="Node3D" parent="Controllers" unique_id=1576566750]
 
-[node name="HealthController" type="Node3D" parent="Controllers"]
+[node name="HealthController" type="Node3D" parent="Controllers" unique_id=1563611552]
 
-[node name="GamePlayArea" type="Node3D" parent="."]
+[node name="GamePlayArea" type="Node3D" parent="." unique_id=833572512]
 
-[node name="Walls" type="Node3D" parent="GamePlayArea"]
+[node name="Walls" type="Node3D" parent="GamePlayArea" unique_id=1872300393]
 
-[node name="LeftWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+[node name="LeftWall" type="StaticBody3D" parent="GamePlayArea/Walls" unique_id=556553931 groups=["collidable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/LeftWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/LeftWall" unique_id=1764632918]
 shape = SubResource("BoxShape3D_p58wn")
 
-[node name="RightWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+[node name="RightWall" type="StaticBody3D" parent="GamePlayArea/Walls" unique_id=1492550739 groups=["collidable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/RightWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/RightWall" unique_id=42175079]
 shape = SubResource("BoxShape3D_p58wn")
 
-[node name="TopWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+[node name="TopWall" type="StaticBody3D" parent="GamePlayArea/Walls" unique_id=819877803 groups=["collidable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/TopWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/TopWall" unique_id=139246508]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_s2u0k")
 
-[node name="BottomWall" type="StaticBody3D" parent="GamePlayArea/Walls" groups=["collidable"]]
+[node name="BottomWall" type="StaticBody3D" parent="GamePlayArea/Walls" unique_id=251575634 groups=["collidable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/BottomWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Walls/BottomWall" unique_id=1296615360]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_qy3kc")
 
-[node name="Areas" type="Node3D" parent="GamePlayArea"]
+[node name="Areas" type="Node3D" parent="GamePlayArea" unique_id=1234933583]
 
-[node name="DangerZone" type="Area3D" parent="GamePlayArea/Areas"]
+[node name="DangerZone" type="Area3D" parent="GamePlayArea/Areas" unique_id=1507253381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/DangerZone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/DangerZone" unique_id=1206029074]
 shape = SubResource("BoxShape3D_aojsi")
 debug_color = Color(1, 1, 0, 0.41960785)
 
-[node name="KillZone" type="Area3D" parent="GamePlayArea/Areas"]
+[node name="KillZone" type="Area3D" parent="GamePlayArea/Areas" unique_id=1401876644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 58)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/KillZone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GamePlayArea/Areas/KillZone" unique_id=2058848020]
 shape = SubResource("BoxShape3D_hcx0j")
 debug_color = Color(0.80719346, 0.41510022, 0, 0.41960785)
 
-[node name="Player" parent="GamePlayArea" node_paths=PackedStringArray("bullet_root") instance=ExtResource("3_y1cp5")]
+[node name="Player" parent="GamePlayArea" unique_id=339079398 node_paths=PackedStringArray("bullet_root") instance=ExtResource("3_y1cp5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 bullet_root = NodePath("../BallRoot")
 
-[node name="BallRoot" type="Node3D" parent="GamePlayArea" groups=["ball_root"]]
+[node name="BallRoot" type="Node3D" parent="GamePlayArea" unique_id=139567429 groups=["ball_root"]]
 
-[node name="BlockRoot" type="Node3D" parent="GamePlayArea"]
+[node name="BlockRoot" type="Node3D" parent="GamePlayArea" unique_id=1974072424]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="Block" parent="GamePlayArea/BlockRoot" unique_id=1216506803 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
-[node name="TopLeftDock" type="Control" parent="HUD"]
+[node name="Block2" parent="GamePlayArea/BlockRoot" unique_id=2088577755 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -40)
+
+[node name="Block3" parent="GamePlayArea/BlockRoot" unique_id=1900855097 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -30)
+
+[node name="Block4" parent="GamePlayArea/BlockRoot" unique_id=1913342695 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -30)
+
+[node name="Block5" parent="GamePlayArea/BlockRoot" unique_id=1641723242 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -40)
+
+[node name="Block6" parent="GamePlayArea/BlockRoot" unique_id=35090914 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -40)
+
+[node name="Block7" parent="GamePlayArea/BlockRoot" unique_id=673685652 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -30)
+
+[node name="Block8" parent="GamePlayArea/BlockRoot" unique_id=352581686 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -30)
+
+[node name="Block9" parent="GamePlayArea/BlockRoot" unique_id=103382465 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -40)
+
+[node name="Block10" parent="GamePlayArea/BlockRoot" unique_id=2076247114 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -40)
+
+[node name="Block11" parent="GamePlayArea/BlockRoot" unique_id=1222224068 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -30)
+
+[node name="Block12" parent="GamePlayArea/BlockRoot" unique_id=1603066022 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -30)
+
+[node name="Block13" parent="GamePlayArea/BlockRoot" unique_id=1077614594 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -30)
+
+[node name="Block14" parent="GamePlayArea/BlockRoot" unique_id=1354028646 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Block15" parent="GamePlayArea/BlockRoot" unique_id=481204916 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -20)
+
+[node name="Block16" parent="GamePlayArea/BlockRoot" unique_id=1354951133 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -10)
+
+[node name="Block17" parent="GamePlayArea/BlockRoot" unique_id=749355496 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -10)
+
+[node name="Block18" parent="GamePlayArea/BlockRoot" unique_id=2134155053 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -20)
+
+[node name="Block19" parent="GamePlayArea/BlockRoot" unique_id=1001578531 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
+
+[node name="Block20" parent="GamePlayArea/BlockRoot" unique_id=51991149 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -10)
+
+[node name="Block21" parent="GamePlayArea/BlockRoot" unique_id=1548942540 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -10)
+
+[node name="Block22" parent="GamePlayArea/BlockRoot" unique_id=576187456 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -20)
+
+[node name="Block23" parent="GamePlayArea/BlockRoot" unique_id=1446301253 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -20)
+
+[node name="Block24" parent="GamePlayArea/BlockRoot" unique_id=1546734537 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -10)
+
+[node name="Block25" parent="GamePlayArea/BlockRoot" unique_id=1662449950 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -10)
+
+[node name="Block26" parent="GamePlayArea/BlockRoot" unique_id=832098010 instance=ExtResource("4_3f7j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -10)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=221972802]
+
+[node name="TopLeftDock" type="Control" parent="HUD" unique_id=104527439]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HudLabel" type="Label" parent="HUD/TopLeftDock"]
+[node name="HudLabel" type="Label" parent="HUD/TopLeftDock" unique_id=2066124504]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource("4_qcce0")]
+[node name="PauseMenu" parent="HUD" unique_id=849972140 instance=ExtResource("4_qcce0")]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ba4uia50bjygv"]
 
-[ext_resource type="Script" uid="uid://dcibdp4foe5mt" path="res://game/ui/upgrade_bay.gd" id="1_g2wbdv"]
+[ext_resource type="Script" uid="uid://dm3c7b08tdd4n" path="res://game/ui/upgrade_bay.gd" id="1_g2wbdv"]
 
 [node name="UpgradeBay" type="Control" unique_id=1446733632]
 layout_mode = 3
