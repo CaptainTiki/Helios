@@ -5,20 +5,20 @@ const SAVE_DIR := "user://saves/"
 const LATEST_SLOT := "slot_1" # Jam scope: one slot (expand later)
 
 func new_game() -> void:
-	GameSession.total_joules = 0
-	GameSession.upgrades = {}
-	GameSession.has_active_profile = true
-	GameSession.active_save_slot = LATEST_SLOT
+	PlayerData.total_joules = 0
+	PlayerData.upgrades = {}
+	PlayerData.has_active_profile = true
+	PlayerData.active_save_slot = LATEST_SLOT
 	save_profile()
 
 func save_profile() -> void:
 	DirAccess.make_dir_recursive_absolute(SAVE_DIR)
-	var path := SAVE_DIR + GameSession.active_save_slot + ".json"
+	var path := SAVE_DIR + PlayerData.active_save_slot + ".json"
 
 	var data := {
-		"total_joules": GameSession.total_joules,
-		"upgrades": GameSession.upgrades,
-		"active_save_slot": GameSession.active_save_slot,
+		"total_joules": PlayerData.total_joules,
+		"upgrades": PlayerData.upgrades,
+		"active_save_slot": PlayerData.active_save_slot,
 	}
 
 	var f := FileAccess.open(path, FileAccess.WRITE)
@@ -40,10 +40,10 @@ func load_latest() -> bool:
 	if typeof(data) != TYPE_DICTIONARY:
 		return false
 
-	GameSession.total_joules = int(data.get("total_joules", 0))
-	GameSession.upgrades = data.get("upgrades", {})
-	GameSession.active_save_slot = String(data.get("active_save_slot", LATEST_SLOT))
-	GameSession.has_active_profile = true
+	PlayerData.total_joules = int(data.get("total_joules", 0))
+	PlayerData.upgrades = data.get("upgrades", {})
+	PlayerData.active_save_slot = String(data.get("active_save_slot", LATEST_SLOT))
+	PlayerData.has_active_profile = true
 	return true
 
 # --- GDD autosave rules ---
@@ -51,5 +51,5 @@ func autosave_on_run_start() -> void:
 	save_profile()
 
 func autosave_on_run_complete(joules_earned: int) -> void:
-	GameSession.total_joules += joules_earned
+	PlayerData.total_joules += joules_earned
 	save_profile()

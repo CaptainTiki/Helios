@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bfy7263avaset"]
+
+[ext_resource type="Script" uid="uid://b638thw6ieajk" path="res://game/level/triggers/danger_zone.gd" id="1_yj2sd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aojsi"]
+size = Vector3(178, 1, 25)
+
+[node name="DangerZone" type="Area3D" unique_id=819381803 groups=["trigger"]]
+script = ExtResource("1_yj2sd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=650306963]
+shape = SubResource("BoxShape3D_aojsi")
+debug_color = Color(1, 1, 0, 0.41960785)

@@ -5,7 +5,7 @@ class_name MainScene
 @onready var game_root: Node = $GameRoot
 
 var current_screen: Node = null
-var current_game: Node = null
+var current_game: RunRoot = null
 
 # Tracks why we opened the save+quit modal
 var _pending_quit_mode: String = "" # "desktop" | "menu"
@@ -34,8 +34,9 @@ func _clear_game() -> void:
 
 func _set_game(packed: PackedScene) -> void:
 	_clear_game()
-	current_game = packed.instantiate()
+	current_game = packed.instantiate() as RunRoot
 	game_root.add_child(current_game)
+	current_game.setup(self)
 	_wire_game(current_game)
 
 
@@ -69,7 +70,7 @@ func start_run() -> void:
 		current_screen.queue_free()
 		current_screen = null
 
-	GameSession.reset_for_new_run()
+	#PlayerData.reset_for_new_run()
 	SaveManager.autosave_on_run_start()
 	_set_game(preload("res://game/level/run_root.tscn"))
 
@@ -161,7 +162,7 @@ func _on_load_slot(_slot_id: String) -> void:
 
 func _on_quit_from_menu() -> void:
 	# GDD rule: can't quit without saving if a profile exists.
-	if GameSession.has_active_profile:
+	if PlayerData.has_active_profile:
 		_pending_quit_mode = "desktop"
 		_set_screen(preload("res://menus/save_and_quit_modal.tscn"))
 	else:
@@ -175,7 +176,7 @@ func _on_save_and_quit_to_menu() -> void:
 
 func _on_modal_confirm() -> void:
 	SaveManager.save_profile()
-	GameSession.has_active_profile = false
+	PlayerData.has_active_profile = false
 	_clear_game()
 
 	if _pending_quit_mode == "desktop":

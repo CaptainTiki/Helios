@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bpwkwtbrekx55"]
+
+[ext_resource type="PackedScene" uid="uid://bfy7263avaset" path="res://game/level/triggers/danger_zone.tscn" id="1_513rb"]
+[ext_resource type="PackedScene" uid="uid://dghilo5x8iopt" path="res://game/level/triggers/kill_zone.tscn" id="2_4pf1i"]
+[ext_resource type="PackedScene" uid="uid://dfako2x15xtj1" path="res://game/player/player.tscn" id="3_v1ijs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p58wn"]
+size = Vector3(1, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2u0k"]
+size = Vector3(1, 1, 178)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qy3kc"]
+size = Vector3(1, 1, 179)
+
+[node name="GamePlayArea" type="Node3D" unique_id=372103423]
+
+[node name="Walls" type="Node3D" parent="." unique_id=330457654]
+
+[node name="LeftWall" type="StaticBody3D" parent="Walls" unique_id=1414090251 groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/LeftWall" unique_id=688116634]
+shape = SubResource("BoxShape3D_p58wn")
+
+[node name="RightWall" type="StaticBody3D" parent="Walls" unique_id=1884042052 groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/RightWall" unique_id=1159946823]
+shape = SubResource("BoxShape3D_p58wn")
+
+[node name="TopWall" type="StaticBody3D" parent="Walls" unique_id=140816910 groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/TopWall" unique_id=127519204]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_s2u0k")
+
+[node name="BottomWall" type="StaticBody3D" parent="Walls" unique_id=1291497408 groups=["collidable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/BottomWall" unique_id=1859419396]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_qy3kc")
+
+[node name="Triggers" type="Node3D" parent="." unique_id=2026163519]
+
+[node name="DangerZone" parent="Triggers" unique_id=819381803 instance=ExtResource("1_513rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33)
+
+[node name="KillZone" parent="Triggers" unique_id=702920048 instance=ExtResource("2_4pf1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 58)
+
+[node name="Player" parent="." unique_id=1879651365 node_paths=PackedStringArray("bullet_root") instance=ExtResource("3_v1ijs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+bullet_root = NodePath("../BallRoot")
+
+[node name="BallRoot" type="Node3D" parent="." unique_id=1169121744 groups=["ball_root"]]
+
+[connection signal="body_entered" from="Triggers/DangerZone" to="Triggers/DangerZone" method="_on_body_entered"]
+[connection signal="body_entered" from="Triggers/KillZone" to="Triggers/KillZone" method="_on_body_entered"]

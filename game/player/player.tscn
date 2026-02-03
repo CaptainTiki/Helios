@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfako2x15xtj1"]
+[gd_scene format=3 uid="uid://dfako2x15xtj1"]
 
 [ext_resource type="Script" uid="uid://dnud2tgwhfug" path="res://game/player/player.gd" id="1_obar5"]
 
@@ -10,55 +10,29 @@ height = 10.0
 radius = 1.0
 height = 10.0
 
-[node name="Player" type="CharacterBody3D" groups=["collidable", "paddle", "player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1087227241 groups=["collidable", "paddle", "player"]]
 collision_mask = 0
 script = ExtResource("1_obar5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=975636504]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_b2mth")
 
-[node name="Components" type="Node3D" parent="."]
+[node name="Components" type="Node3D" parent="." unique_id=1588765]
 
-[node name="MovementComponent" type="Node3D" parent="Components"]
+[node name="MovementComponent" type="Node3D" parent="Components" unique_id=1382722084]
 
-[node name="CombatComponent" type="Node3D" parent="Components"]
+[node name="CombatComponent" type="Node3D" parent="Components" unique_id=616763447]
 
-[node name="BallLauncherComponent" type="Node3D" parent="Components"]
+[node name="BallLauncherComponent" type="Node3D" parent="Components" unique_id=1706966578]
 
-[node name="Rig" type="Node3D" parent="."]
+[node name="Rig" type="Node3D" parent="." unique_id=408357715]
 
-[node name="Mesh" type="Node3D" parent="Rig"]
+[node name="Mesh" type="Node3D" parent="Rig" unique_id=872819228]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh" unique_id=1552430709]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_8soms")
 skeleton = NodePath("../../..")
 
-[node name="VFX" type="Node3D" parent="Rig"]
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 50.0
-grow_horizontal = 0
-
-[node name="Debug_Label" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "position"
-
-[node name="Debug_Label2" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "velocity"
+[node name="VFX" type="Node3D" parent="Rig" unique_id=1298995438]

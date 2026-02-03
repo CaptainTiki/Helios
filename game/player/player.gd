@@ -7,28 +7,28 @@ class_name Player
 @export var accel : float = 8
 @export var decel : float = 18
 @export_category("Ball Vars")
+@export var staging_delay = 1.0
+@export var max_ball_magazine = 5
 @export var serve_influence = 0.75
 @export var return_influence = 0.45
 @export_category("references")
 @export var bullet_root : Node3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var debug_label: Label = $Control/VBoxContainer/Debug_Label
-@onready var debug_label_2: Label = $Control/VBoxContainer/Debug_Label2
 
 @onready var ball_scene = preload("uid://cvhmjswxrcomw")
 @onready var rig: Node3D = $Rig
 
 var staged_ball : BallBase = null
+var current_magazine : int = 0
 
 var target
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	current_magazine = max_ball_magazine
 	_stage_ball()
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-	debug_label.text = str(global_position)
-	debug_label_2.text = str(velocity)
 	_move_paddle(delta)
 	if Input.is_action_just_pressed("launch_ball"):
 		_launch_ball()
@@ -59,12 +59,14 @@ func _move_paddle(delta: float) -> void:
 	velocity.x = lerp(velocity.x, move_horizontal * max_speed, move_delta * delta)
 
 func _stage_ball() -> void:
-	if staged_ball:
+	if staged_ball or current_magazine <= 0:
 		return
 	
 	staged_ball= ball_scene.instantiate() as BallBase
 	rig.add_child(staged_ball)
-	staged_ball.global_position = global_position + Vector3(0,0,-1.5)
+	staged_ball.global_position = global_position + Vector3(0,0,-0.5)
+	staged_ball.stage(self)
+	current_magazine -= 1
 
 
 func _launch_ball() -> void:
@@ -74,3 +76,4 @@ func _launch_ball() -> void:
 		var dir = Vector3(x_dir,0,-1).normalized()
 		staged_ball.launch(dir, bullet_root)
 		staged_ball = null
+		get_tree().create_timer(staging_delay).timeout.connect(_stage_ball)

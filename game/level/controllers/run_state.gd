@@ -1,24 +1,26 @@
 extends Node3D
-class_name RunScene
+class_name RunState
 
 signal run_ended(joules_earned: int)
 signal save_and_quit_requested
 
-@onready var pause_menu: Control = $HUD/PauseMenu
-@onready var hud_label: Label = $HUD/TopLeftDock/HudLabel
+@onready var pause_menu: Control = %PauseMenu
+@onready var hud_label: Label = %HudLabel
+@onready var health_value_label: Label = %Health_Value_Label
+@onready var score_value_label: Label = %Score_Value_Label
 
-var ended := false
+var ended : bool = false
+var run_root : RunRoot = null
 
 func _ready() -> void:
-	_update_hud()
-
+	run_root = $"../../"
 	# Wire pause menu buttons
 	pause_menu.resume_pressed.connect(_on_resume)
 	pause_menu.settings_pressed.connect(_on_settings)
 	pause_menu.save_quit_pressed.connect(_on_save_quit)
 
 func _process(_delta: float) -> void:
-	_update_hud()
+	update_hud()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -28,8 +30,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Temporary debug: press K to end run + grant some joules
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
-		GameSession.joules_this_run += 50
-		GameSession.threat_level = max(GameSession.threat_level, 3)
+		PlayerData.joules_this_run += 50
+		PlayerData.threat_level = max(PlayerData.threat_level, 3)
 		end_run()
 
 func _toggle_pause() -> void:
@@ -56,10 +58,12 @@ func end_run() -> void:
 	if ended:
 		return
 	ended = true
-	emit_signal("run_ended", GameSession.joules_this_run)
+	emit_signal("run_ended", PlayerData.joules_this_run)
 
-func _update_hud() -> void:
+func update_hud() -> void:
 	hud_label.text = "RUN (stub)\nJoules this run: %d\nThreat: %d\n(ESC = Pause, K = End Run)" % [
-		GameSession.joules_this_run,
-		GameSession.threat_level
-	]
+		PlayerData.joules_this_run,
+		PlayerData.threat_level
+		]
+	health_value_label.text = str(run_root.health_controller.current_health)
+	score_value_label.text = str(run_root.scoring_controller.total_score)

@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameSession="*uid://g3pqql1tn7pr"
+PlayerData="*uid://g3pqql1tn7pr"
 SaveManager="*uid://cf4c8v3iqh1yn"
 
 [global_group]
@@ -32,6 +32,7 @@ ball_root=""
 ball=""
 collidable=""
 block=""
+trigger=""
 
 [input]
 

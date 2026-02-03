@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cq4d25nhut1ds"]
+
+[ext_resource type="Texture2D" uid="uid://dwemyvh4qup3x" path="res://assets/textures/space_backgroundjpg.jpg" id="1_tkexo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ywh"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_ce5qc"]
+sky_material = SubResource("ProceduralSkyMaterial_y7ywh")
+
+[sub_resource type="Environment" id="Environment_ys12y"]
+background_mode = 2
+sky = SubResource("Sky_ce5qc")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f87av"]
+shading_mode = 0
+albedo_texture = ExtResource("1_tkexo")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p203r"]
+material = SubResource("StandardMaterial3D_f87av")
+size = Vector2(178, 100)
+
+[node name="Environment" type="Node3D" unique_id=1713573348]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2135807178]
+environment = SubResource("Environment_ys12y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1911484223]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1866616730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=951426032]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+projection = 1
+size = 100.0
+
+[node name="Background" type="Node3D" parent="." unique_id=2058150780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background" unique_id=1953863554]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_p203r")
+
+[node name="SolarWind" type="GPUParticles3D" parent="Background" unique_id=1334073861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)

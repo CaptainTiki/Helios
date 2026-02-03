@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c7qpe4g0vwfiw"]
+
+[ext_resource type="Script" uid="uid://ncxbnev3iun0" path="res://game/level/controllers/block_controller.gd" id="1_wfwsc"]
+
+[node name="BlockController" type="Node3D" unique_id=1133725439]
+script = ExtResource("1_wfwsc")
+
+[node name="BlockContainer" type="Node3D" parent="." unique_id=1614264491]

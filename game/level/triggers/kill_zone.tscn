@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dghilo5x8iopt"]
+
+[ext_resource type="Script" uid="uid://dcrc3l4qh2nf8" path="res://game/level/triggers/kill_zone.gd" id="1_vy6x8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcx0j"]
+size = Vector3(178, 1, 25)
+
+[node name="KillZone" type="Area3D" unique_id=702920048]
+script = ExtResource("1_vy6x8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1228725238]
+shape = SubResource("BoxShape3D_hcx0j")
+debug_color = Color(0.80719346, 0.41510022, 0, 0.41960785)
