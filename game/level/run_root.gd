@@ -8,9 +8,12 @@ class_name RunRoot
 @onready var health_controller: HealthController = %HealthController
 
 var main : MainScene = null
+var rundata : RunData = null
 
 func setup(_main : MainScene) -> void:
 	main = _main
+	rundata = RunData.new()
+	rundata.reset_for_new_run()
 	run_state.run_ended.connect(main.show_run_summary)
 	health_controller.died.connect(run_state.end_run)
 	run_state.update_hud()

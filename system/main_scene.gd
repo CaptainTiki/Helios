@@ -75,10 +75,15 @@ func start_run() -> void:
 	_set_game(preload("res://game/level/run_root.tscn"))
 
 
-func show_run_summary(joules_earned: int) -> void:
-	SaveManager.autosave_on_run_complete(joules_earned)
-	_clear_game()
+func show_run_summary(rundata : RunData) -> void:
+	PlayerData.add_rundata(rundata)
+	SaveManager.autosave_on_run_complete()
 	_set_screen(preload("res://game/ui/run_summary.tscn"))
+	print(current_screen.name)
+	if current_screen is RunSummaryScreen:
+		current_screen.set_summary(rundata)
+	_clear_game()
+
 
 
 # ---------- Wiring ----------

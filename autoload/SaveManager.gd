@@ -50,6 +50,5 @@ func load_latest() -> bool:
 func autosave_on_run_start() -> void:
 	save_profile()
 
-func autosave_on_run_complete(joules_earned: int) -> void:
-	PlayerData.total_joules += joules_earned
+func autosave_on_run_complete() -> void:
 	save_profile()

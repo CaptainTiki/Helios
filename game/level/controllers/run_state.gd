@@ -1,7 +1,7 @@
 extends Node3D
 class_name RunState
 
-signal run_ended(joules_earned: int)
+signal run_ended(rundata: RunData)
 signal save_and_quit_requested
 
 @onready var pause_menu: Control = %PauseMenu
@@ -30,8 +30,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Temporary debug: press K to end run + grant some joules
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
-		PlayerData.joules_this_run += 50
-		PlayerData.threat_level = max(PlayerData.threat_level, 3)
+		run_root.rundata.joules_this_run += 50
+		run_root.rundata.threat_level = max(run_root.rundata.threat_level, 3)
 		end_run()
 
 func _toggle_pause() -> void:
@@ -58,12 +58,12 @@ func end_run() -> void:
 	if ended:
 		return
 	ended = true
-	emit_signal("run_ended", PlayerData.joules_this_run)
+	emit_signal("run_ended", run_root.rundata)
 
 func update_hud() -> void:
 	hud_label.text = "RUN (stub)\nJoules this run: %d\nThreat: %d\n(ESC = Pause, K = End Run)" % [
-		PlayerData.joules_this_run,
-		PlayerData.threat_level
+		run_root.rundata.joules_this_run,
+		run_root.rundata.threat_level
 		]
 	health_value_label.text = str(run_root.health_controller.current_health)
 	score_value_label.text = str(run_root.scoring_controller.total_score)

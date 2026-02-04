@@ -7,3 +7,7 @@ var upgrades: Dictionary = {} # e.g. {"offense.damage": 2, "systems.magnet": 1}
 
 var has_active_profile: bool = false
 var active_save_slot: String = "slot_1"
+
+func add_rundata(rundata : RunData) -> void:
+	total_joules += rundata.joules_this_run
+	
