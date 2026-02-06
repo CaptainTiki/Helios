@@ -17,26 +17,26 @@ size = Vector3(1, 1, 179)
 
 [node name="Walls" type="Node3D" parent="." unique_id=330457654]
 
-[node name="LeftWall" type="StaticBody3D" parent="Walls" unique_id=1414090251 groups=["collidable"]]
+[node name="LeftWall" type="StaticBody3D" parent="Walls" unique_id=1414090251 groups=["collidable", "wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/LeftWall" unique_id=688116634]
 shape = SubResource("BoxShape3D_p58wn")
 
-[node name="RightWall" type="StaticBody3D" parent="Walls" unique_id=1884042052 groups=["collidable"]]
+[node name="RightWall" type="StaticBody3D" parent="Walls" unique_id=1884042052 groups=["collidable", "wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/RightWall" unique_id=1159946823]
 shape = SubResource("BoxShape3D_p58wn")
 
-[node name="TopWall" type="StaticBody3D" parent="Walls" unique_id=140816910 groups=["collidable"]]
+[node name="TopWall" type="StaticBody3D" parent="Walls" unique_id=140816910 groups=["collidable", "wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/TopWall" unique_id=127519204]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_s2u0k")
 
-[node name="BottomWall" type="StaticBody3D" parent="Walls" unique_id=1291497408 groups=["collidable"]]
+[node name="BottomWall" type="StaticBody3D" parent="Walls" unique_id=1291497408 groups=["collidable", "wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/BottomWall" unique_id=1859419396]

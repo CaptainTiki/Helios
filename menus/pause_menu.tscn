@@ -59,6 +59,6 @@ text = "Resume"
 layout_mode = 2
 text = "Settings (stub)"
 
-[node name="SaveQuitButton" type="Button" parent="Panel/Margin/VBox" unique_id=238681983]
+[node name="CollectAndQuitButton" type="Button" parent="Panel/Margin/VBox" unique_id=238681983]
 layout_mode = 2
-text = "Save & Quit"
+text = "Collect and Quit"

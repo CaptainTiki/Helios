@@ -12,6 +12,9 @@ albedo_color = Color(0.10043866, 0.3377082, 1, 1)
 material = SubResource("StandardMaterial3D_bces4")
 size = Vector3(10, 4, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
+size = Vector3(9.5, 3.8, 3.8)
+
 [node name="Block" type="StaticBody3D" unique_id=775604532 groups=["block", "collidable"]]
 script = ExtResource("1_bces4")
 
@@ -27,3 +30,10 @@ mesh = SubResource("BoxMesh_bces4")
 skeleton = NodePath("../../..")
 
 [node name="VFX" type="Node3D" parent="Rig" unique_id=312647135]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=955271679]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=716388620]
+shape = SubResource("BoxShape3D_w1hq8")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

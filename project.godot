@@ -30,9 +30,9 @@ player=""
 paddle=""
 ball_root=""
 ball=""
-collidable=""
 block=""
 trigger=""
+wall=""
 
 [input]
 

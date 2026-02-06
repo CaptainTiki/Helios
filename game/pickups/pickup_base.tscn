@@ -2,28 +2,35 @@
 
 [ext_resource type="Script" uid="uid://cstl2ovn8fg3j" path="res://game/pickups/pickup_base.gd" id="1_d26nl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_586pn"]
-size = Vector3(10, 4, 4)
+[sub_resource type="SphereShape3D" id="SphereShape3D_d26nl"]
+radius = 2.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bces4"]
-albedo_color = Color(0.10043866, 0.3377082, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d26nl"]
+emission_enabled = true
+emission = Color(1.2153264, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wi55o"]
-material = SubResource("StandardMaterial3D_bces4")
-size = Vector3(10, 4, 4)
+[sub_resource type="SphereMesh" id="SphereMesh_586pn"]
+material = SubResource("StandardMaterial3D_d26nl")
+radius = 1.5
+height = 3.0
+radial_segments = 8
+rings = 4
 
-[node name="PickupBase" type="StaticBody3D" unique_id=2065317777]
+[node name="PickupBase" type="Area3D" unique_id=1164432518]
 script = ExtResource("1_d26nl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1425586766]
-shape = SubResource("BoxShape3D_586pn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16548157, -0.052124023, -0.041503906)
+shape = SubResource("SphereShape3D_d26nl")
 
 [node name="Rig" type="Node3D" parent="." unique_id=1200517901]
 
 [node name="Mesh" type="Node3D" parent="Rig" unique_id=1271359603]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rig/Mesh" unique_id=620355156]
-mesh = SubResource("BoxMesh_wi55o")
+mesh = SubResource("SphereMesh_586pn")
 skeleton = NodePath("../../..")
 
 [node name="VFX" type="Node3D" parent="Rig" unique_id=1635754219]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

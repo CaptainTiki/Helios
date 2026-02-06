@@ -2,21 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dnud2tgwhfug" path="res://game/player/player.gd" id="1_obar5"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2mth"]
-radius = 1.0
-height = 10.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_obar5"]
+size = Vector3(2, 11, 2)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8soms"]
 radius = 1.0
 height = 10.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1087227241 groups=["collidable", "paddle", "player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1087227241 groups=["paddle", "player"]]
 collision_mask = 0
 script = ExtResource("1_obar5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=975636504]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_b2mth")
+shape = SubResource("BoxShape3D_obar5")
 
 [node name="Components" type="Node3D" parent="." unique_id=1588765]
 

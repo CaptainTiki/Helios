@@ -15,11 +15,16 @@ func setup(_main : MainScene) -> void:
 	rundata = RunData.new()
 	rundata.reset_for_new_run()
 	run_state.run_ended.connect(main.show_run_summary)
+	run_state.collect_and_quit_requested.connect(run_state.end_run)
 	health_controller.died.connect(run_state.end_run)
 	run_state.update_hud()
 
 func add_score(score_value : float)-> void:
 	scoring_controller.add_score(score_value)
+	run_state.update_hud()
+
+func add_joules(joules_value : float) -> void:
+	scoring_controller.add_joules(joules_value)
 	run_state.update_hud()
 
 func damage_player(dmg : float) -> void:

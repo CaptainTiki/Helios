@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ba4uia50bjygv"]
 
 [ext_resource type="Script" uid="uid://dm3c7b08tdd4n" path="res://game/ui/upgrade_bay.gd" id="1_g2wbdv"]
+[ext_resource type="PackedScene" uid="uid://lyq3ymc16le8" path="res://game/ui/tech_bn.tscn" id="2_abybk"]
 
 [node name="UpgradeBay" type="Control" unique_id=1446733632]
 layout_mode = 3
@@ -23,37 +24,90 @@ theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 48
 theme_override_constants/margin_bottom = 48
 
-[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1237348379]
+[node name="Background" type="TextureRect" parent="." unique_id=129937550]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainSplit" type="HBoxContainer" parent="Background" unique_id=471280043]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TreeViewport" type="Control" parent="Background/MainSplit" unique_id=525656774]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PanZoomRoot" type="Control" parent="Background/MainSplit/TreeViewport" unique_id=1372700071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConnectionsLayer" type="Control" parent="Background/MainSplit/TreeViewport/PanZoomRoot" unique_id=1076378962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NodesLayer" type="Control" parent="Background/MainSplit/TreeViewport/PanZoomRoot/ConnectionsLayer" unique_id=124294241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" parent="Background/MainSplit/TreeViewport/PanZoomRoot/ConnectionsLayer/NodesLayer" unique_id=500428125 instance=ExtResource("2_abybk")]
+layout_mode = 0
+
+[node name="Control" type="Control" parent="Background/MainSplit" unique_id=1168036886]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/MainSplit/Control" unique_id=772517994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="Background/MainSplit/Control/PanelContainer" unique_id=1237348379]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Margin/VBox" unique_id=190381815]
+[node name="TitleLabel" type="Label" parent="Background/MainSplit/Control/PanelContainer/VBox" unique_id=190381815]
 layout_mode = 2
 text = "RESEARCH / UPGRADE (stub)"
 horizontal_alignment = 1
 
-[node name="MetaLabel" type="Label" parent="Margin/VBox" unique_id=1317441800]
+[node name="MetaLabel" type="Label" parent="Background/MainSplit/Control/PanelContainer/VBox" unique_id=1317441800]
 layout_mode = 2
 text = "Total Joules: 0"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="Margin/VBox" unique_id=1102263362]
+[node name="Spacer" type="Control" parent="Background/MainSplit/Control/PanelContainer/VBox" unique_id=1102263362]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="UpgradeStubLabel" type="Label" parent="Margin/VBox" unique_id=999822988]
+[node name="RedeployButton" type="Button" parent="Background/MainSplit/Control/PanelContainer/VBox" unique_id=436286447]
 layout_mode = 2
-text = "Upgrade web goes here.
-(Buttons later — right now this is just a loop stub.)"
-autowrap_mode = 2
-
-[node name="Spacer2" type="Control" parent="Margin/VBox" unique_id=316478425]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="RedeployButton" type="Button" parent="Margin/VBox" unique_id=436286447]
-layout_mode = 2
+size_flags_vertical = 0
 text = "Redeploy (Start Run)"
 
-[node name="BackButton" type="Button" parent="Margin/VBox" unique_id=894697994]
+[node name="BackButton" type="Button" parent="Background/MainSplit/Control/PanelContainer/VBox" unique_id=894697994]
 layout_mode = 2
+size_flags_vertical = 0
 text = "Back to Main Menu"

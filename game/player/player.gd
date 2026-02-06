@@ -13,7 +13,7 @@ class_name Player
 @export var return_influence = 0.45
 @export_category("references")
 @export var bullet_root : Node3D
-@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var paddle_collider: CollisionShape3D = $CollisionShape3D
 
 @onready var ball_scene = preload("uid://cvhmjswxrcomw")
 @onready var rig: Node3D = $Rig
@@ -67,7 +67,6 @@ func _stage_ball() -> void:
 	staged_ball.global_position = global_position + Vector3(0,0,-0.5)
 	staged_ball.stage(self)
 	current_magazine -= 1
-
 
 func _launch_ball() -> void:
 	if staged_ball:
